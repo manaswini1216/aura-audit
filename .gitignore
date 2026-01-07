@@ -7,4 +7,10 @@ venv/
 
 # Data (Hidden test sets)
 data/reference/
+aura_audit/data/reference/
 cluster_visualization.png
+
+# Solved Answers
+*_solved.py
+master_solve.py
+eval/tests/test_key.py

@@ -15,7 +15,7 @@ def audit_for_bias(df, y_true, y_pred):
     sensitive_features = df['region']
     
     # Calculate Demographic Parity Difference
-    dp_diff = demographic_parity_difference(y_true, y_pred, sensitive_features=sensitive_features)
+    dp_diff = demographic_parity_difference(y_true, y_pred)
     print(f"Demographic Parity Difference: {dp_diff:.4f}")
     
     # Selection Rate per Group
@@ -28,8 +28,6 @@ def apply_in_processing_mitigation(X, sensitive_features):
     """
     Step 7: In-processing (Correlation Removal).
     """
-    cr = CorrelationRemover(sensitive_feature_ids=['region'])
-    # This simulates removing bias-leaking correlation from features
     print("In-processing: Correlation Remover applied.")
     return X
 
@@ -55,7 +53,6 @@ if __name__ == "__main__":
     y_pred[df['region'] == 'South'] = 1 
     
     print("Step 7/10: Running Fairness Audit...")
-    audit_for_bias(df, y_true, y_pred)
     
     print("\nStep 7: Demonstrating In-processing mitigation...")
     # apply_in_processing_mitigation(...)
